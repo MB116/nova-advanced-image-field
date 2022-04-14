@@ -25,7 +25,8 @@
         :view-mode="1"
         :aspect-ratio="field.aspectRatio || NaN"
         :src="imgSrc"
-        :dragMode="move"
+        :crop-box-resizable="false"
+        dragMode="move"
         :zoomable="false"
       ></vue-cropper>
 
