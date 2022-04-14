@@ -27,7 +27,7 @@
         :src="imgSrc"
         :crop-box-resizable="false"
         dragMode="move"
-        :zoomable="false"
+        :zoomable="true"
       ></vue-cropper>
 
       <p v-if="imgSrc" class="mt-3 mb-6 flex items-center text-sm">
