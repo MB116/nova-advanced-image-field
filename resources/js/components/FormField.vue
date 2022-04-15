@@ -110,7 +110,6 @@ export default {
             JSON.stringify(
               this.$refs.cropper
                 .getCroppedCanvas({ width: 900, height: 506 })
-                .toDataURL()
             )
           );
         }
