@@ -28,9 +28,6 @@
         :crop-box-resizable="false"
         dragMode="move"
         :zoomable="true"
-        :img-style="{ width: '900px', height: '506px' }"
-        :minCropBoxWidth="900"
-        :minCropBoxHeight="506"
       ></vue-cropper>
 
       <p v-if="imgSrc" class="mt-3 mb-6 flex items-center text-sm">
@@ -109,7 +106,12 @@ export default {
         if (this.field.croppable) {
           formData.append(
             this.field.attribute + "_data",
-            JSON.stringify(this.$refs.cropper.getData(true))
+            //JSON.stringify(this.$refs.cropper.getData(true))
+            JSON.stringify(
+              this.$refs.cropper
+                .getCroppedCanvas({ width: 10000, height: 10000 })
+                .toDataURL()
+            )
           );
         }
       }
