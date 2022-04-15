@@ -22,12 +22,13 @@
         v-show="imgSrc"
         class="mb-4"
         ref="cropper"
-        :view-mode="1"
+        :view-mode="3"
         :aspect-ratio="field.aspectRatio || NaN"
         :src="imgSrc"
-        :crop-box-resizable="false"
+        :crop-box-resizable="true"
         dragMode="move"
-        :zoomable="true"
+        :zoomable="false"
+        @crop.native="cropFired($event)"
       ></vue-cropper>
 
       <p v-if="imgSrc" class="mt-3 mb-6 flex items-center text-sm">
@@ -106,11 +107,7 @@ export default {
         if (this.field.croppable) {
           formData.append(
             this.field.attribute + "_data",
-            //JSON.stringify(this.$refs.cropper.getData(true))
-            JSON.stringify(
-              this.$refs.cropper
-                .getCroppedCanvas({ width: 900, height: 506 })
-            )
+            JSON.stringify(this.$refs.cropper.getData(true))
           );
         }
       }
@@ -164,6 +161,31 @@ export default {
      */
     imageDeleted() {
       this.$emit("file-deleted");
+    },
+
+    cropFired(event) {
+      var minCroppedWidth = 900;
+      var minCroppedHeight = 506;
+      var maxCroppedWidth = 1920;
+      var maxCroppedHeight = 1080;
+
+      var width = event.detail.width;
+      var height = event.detail.height;
+
+      if (
+        width < minCroppedWidth ||
+        height < minCroppedHeight ||
+        width > maxCroppedWidth ||
+        height > maxCroppedHeight
+      ) {
+        this.$refs.cropper.setData({
+          width: Math.max(minCroppedWidth, Math.min(maxCroppedWidth, width)),
+          height: Math.max(
+            minCroppedHeight,
+            Math.min(maxCroppedHeight, height)
+          ),
+        });
+      }
     },
   },
 
