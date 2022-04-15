@@ -28,6 +28,7 @@
         :crop-box-resizable="false"
         dragMode="move"
         :zoomable="true"
+        @ready="$toCrop.cropper('setCropBoxData', { width: 250, height: 250 })"
       ></vue-cropper>
 
       <p v-if="imgSrc" class="mt-3 mb-6 flex items-center text-sm">
