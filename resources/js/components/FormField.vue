@@ -29,6 +29,8 @@
         dragMode="move"
         :zoomable="true"
         :img-style="{ width: '900px', height: '506px' }"
+        :minCropBoxWidth="900"
+        :minCropBoxHeight="506"
       ></vue-cropper>
 
       <p v-if="imgSrc" class="mt-3 mb-6 flex items-center text-sm">
