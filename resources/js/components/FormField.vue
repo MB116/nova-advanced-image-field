@@ -164,8 +164,8 @@ export default {
     },
 
     cropFired(event) {
-      var minCroppedWidth = 900;
-      var minCroppedHeight = 506;
+      var minCroppedWidth = 1280;
+      var minCroppedHeight = 720;
       var maxCroppedWidth = 3840;
       var maxCroppedHeight = 2160;
 
